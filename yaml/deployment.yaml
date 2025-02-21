@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-1.0.0
+  namespace: devops-practice
+  labels:
+    app.kubernetes.io/name: helloworld
+    app.kubernetes.io/part-of: devops-practice
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1        # how many pods we can add at a time
+      maxUnavailable: 0  # maxUnavailable define how many pods can be unavailable during the rolling update
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: helloworld
+      app.kubernetes.io/part-of: devops-practice
+      app.kubernetes.io/version: "1.0.0"
+  template:
+    metadata:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      labels:
+        app.kubernetes.io/name: helloworld
+        app.kubernetes.io/part-of: devops-practice
+        app.kubernetes.io/version: "1.0.0"
+        component_id: devops-practice.helloworld
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 1001
+        runAsNonRoot: true
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: helloworld
+        image: <image-name>
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            drop:
+              - ALL
+          allowPrivilegeEscalation: false
+          seccompProfile:
+            type: RuntimeDefault
+        ports:
+          - name: http
+            containerPort: 8080
+        env:
+        - name: COMPONENT_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['component_id']
+---
+# Normal HTTP Endpoint to serve the REST requests
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+  namespace: devops-practice
+  labels:
+    app.kubernetes.io/name: helloworld
+    app.kubernetes.io/part-of: tushar
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: helloworld
+    app.kubernetes.io/part-of: devops-practice
