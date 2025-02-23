@@ -6,7 +6,7 @@ pipeline {
         GITHUB_CREDENTIALS = credentials('github-credentials')
         GARDENER_KUBECONFIG = credentials('gardener-kubeconfig')
         DOCKER_REPOSITORY = 'tushar1309'
-        PROJECT_NAME = 'hello-world-python'  // Updated to match your repo name
+        PROJECT_NAME = 'hello-world-python'  
         NAMESPACE = 'devops-practice'
     }
     
