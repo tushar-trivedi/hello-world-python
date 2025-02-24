@@ -11,6 +11,10 @@ def hello_world():
 def greet(name):
     return f"<h1>Hello {name}</h1>"
 
+@app.route('/thankyou/<name>')
+def thankyou(name):
+    return f"<h1>Thank you {name}</h1>"
+
 if __name__ == '__main__':
     http_server = WSGIServer(("", 8080), app)
     http_server.serve_forever()
