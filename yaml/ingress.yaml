@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx 
   rules:
-    - host: hw.ingress.devops.testpro.shoot.canary.k8s-hana.ondemand.com
+    - host: hw.ingress.practice.testpro.shoot.canary.k8s-hana.ondemand.com
       http:
         paths:
           - path: /

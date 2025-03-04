@@ -37,7 +37,7 @@ spec:
           type: RuntimeDefault
       containers:
       - name: helloworld
-        image: <image-name>
+        image: docker.io/tushar1309/tushar-repository:7FFC1690-4AFA-4C4D-84A5-D54AA5033CB0
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
