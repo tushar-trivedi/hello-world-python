@@ -7,6 +7,9 @@ app = Flask(__name__)
 def hello_world():
     return 'HELLO World'
 
+@app.route('/<name>')
+def hello_world(name):
+    return f'HELLO {name}'
 
 if __name__ == '__main__':
     http_server = WSGIServer(("", 8080), app)
