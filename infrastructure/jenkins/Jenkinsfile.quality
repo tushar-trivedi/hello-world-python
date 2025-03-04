@@ -49,14 +49,20 @@ pipeline {
     }
     
     post {
-        always {
-            cleanWs()
-        }
-        success {
-            githubPRStatusPublisher statusMsg: 'Quality checks passed', statusOnSuccess: 'SUCCESS'
-        }
-        failure {
-            githubPRStatusPublisher statusMsg: 'Quality checks failed', statusOnSuccess: 'FAILURE'
-        }
+    success {
+        githubNotify(
+            context: 'SonarQube Quality Check',
+            description: 'Quality checks passed',
+            status: 'SUCCESS'
+        )
     }
+    failure {
+        githubNotify(
+            context: 'SonarQube Quality Check',
+            description: 'Quality checks failed',
+            status: 'FAILURE'
+        )
+    }
+}
+
 }
