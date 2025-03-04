@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    
     triggers {
         // This pipeline is triggered via webhook for PRs
         githubPullRequest events: [
