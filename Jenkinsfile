@@ -51,7 +51,6 @@ pipeline {
                         sh """
                             sed -i 's|image: <image-name>|image: docker.io/${DOCKER_REPOSITORY}/${PROJECT_NAME}:${VERSION}|' yaml/deployment.yaml
                             kubectl apply -f yaml/deployment.yaml -n ${NAMESPACE}
-                            kubectl apply -f yaml/ingress.yaml -n ${NAMESPACE}
                         """
                     }
                 }
