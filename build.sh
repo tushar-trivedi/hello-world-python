@@ -28,3 +28,4 @@ docker push $REPOSITORY/$PROJECT:$VERSION
 
 # Apply the YAML passed into stdin and replace the version string first
 cat ./yaml/deployment.yaml | sed "s~<image-name>~$REPOSITORY/$PROJECT:$VERSION~g" | kubectl apply -f -
+kubectl apply -f ./yaml/ingress.yaml
