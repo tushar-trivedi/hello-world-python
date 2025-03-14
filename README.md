@@ -50,8 +50,5 @@ A cloud-native application is designed to take full advantage of cloud computing
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
 ## Contact
 For any questions, feel free to reach out to [tushar-trivedi](https://github.com/tushar-trivedi).
