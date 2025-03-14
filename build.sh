@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # build the docker image
 
-kubectl config use-context garden-testpro--devops-external
+kubectl config use-context garden-testpro--tushar-external
 kubectl cluster-info
 
 echo "================================================================================================="
